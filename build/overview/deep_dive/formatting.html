@@ -1,0 +1,628 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Formatting &#8212; Ivy Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'overview/deep_dive/formatting';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://unify.ai/docs/versions/ivy.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        </script>
+    <script src="../../_static/js/kapa.ai.js"></script>
+    <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+   
+
+<a class="navbar-brand logo" href="https://unify.ai">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_new.svg?raw=true" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_new_dark.svg?raw=true" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav role="navigation" class="nav-menu">
+    <div class="menu-holder">
+        <div class="menu-link-holder">
+            <a href="https://github.com/unifyai/ivy" target="_blank" class="nav-link-header w-nav-link">Github</a>
+            <a href="https://unify.ai/docs/ivy/" target="_blank" class="nav-link-header w-nav-link">Docs</a>
+            <a href="https://discord.com/invite/sXyFF8tDtm" target="_blank" class="nav-link-header w-nav-link">Discord</a>
+        </div>
+    </div>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      dev  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav role="navigation" class="nav-menu">
+    <div class="menu-holder">
+        <div class="menu-link-holder">
+            <a href="https://github.com/unifyai/ivy" target="_blank" class="nav-link-header w-nav-link">Github</a>
+            <a href="https://unify.ai/docs/ivy/" target="_blank" class="nav-link-header w-nav-link">Docs</a>
+            <a href="https://discord.com/invite/sXyFF8tDtm" target="_blank" class="nav-link-header w-nav-link">Discord</a>
+        </div>
+    </div>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      dev  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+  aria-label="Section Navigation">
+    <div class="bd-toc-item navbar-nav">
+        
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links">
+    <div class="bd-toc-item navbar-nav">
+        <p aria-level="2" class="caption" role="heading">
+            <span class="caption-text">Docs</span>
+        </p>
+        <ul class="nav bd-sidenav">
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/ivy">
+                    Ivy
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/mech">
+                    Ivy mech
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/vision">
+                    Ivy vision
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/robot">
+                    Ivy robot
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/gym">
+                    Ivy gym
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/memory">
+                    Ivy memory
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/builder">
+                    Ivy builder
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/models">
+                    Ivy models
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/ecosystem">
+                    Ivy ecosystem
+                </a>
+            </li>
+            </ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Formatting</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="formatting">
+<h1>Formatting<a class="headerlink" href="#formatting" title="Permalink to this heading">#</a></h1>
+<p>Currently Ivy follows <a class="reference external" href="https://black.readthedocs.io/en/stable/index.html">black</a> code style, and <a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a> formatter in order to ensure that our code is consistent,
+readable and bug free. This deep-dive will explain how to use these tools to ensure that your code is formatted
+correctly.</p>
+<p>Please ensure to conform to the formatting rules before submitting a pull request. You are encouraged to take a look
+these coding style guides before you start contributing to Ivy.</p>
+<section id="lint-checks">
+<h2>Lint Checks<a class="headerlink" href="#lint-checks" title="Permalink to this heading">#</a></h2>
+<p>In addition to <a class="reference external" href="https://black.readthedocs.io/en/stable/index.html">black</a> and <a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a>, Ivy uses other linters to help automate the formatting process, specially for
+issues <a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a> detects but doesn’t fix automatically. In addition to that, we validate docstring as part of our
+linting process. You can learn more about our docstring formatting in the <a class="reference internal" href="docstrings.html#docstrings"><span class="std std-ref">Docstrings</span></a> section.</p>
+<p>We use the following linters:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://black.readthedocs.io/en/stable/index.html">black</a></p></li>
+<li><p><a class="reference external" href="https://flake8.pycqa.org/en/latest/index.html">flake8</a></p></li>
+<li><p><a class="reference external" href="https://github.com/PyCQA/autoflake">autoflake</a></p></li>
+<li><p><a class="reference external" href="https://github.com/PyCQA/docformatter">docformatter</a></p></li>
+<li><p><a class="reference external" href="https://github.com/pycqa/pydocstyle">pydocstyle</a></p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/lint-hook">ivy-lint</a> (WIP 🚧)</p></li>
+</ul>
+<p>You can also take a look at our configuration for linting in <a class="reference external" href="https://github.com/unifyai/ivy/blob/master/setup.cfg">setup.cfg</a>
+file.</p>
+</section>
+<section id="setup-formatting-locally">
+<h2>Setup Formatting Locally<a class="headerlink" href="#setup-formatting-locally" title="Permalink to this heading">#</a></h2>
+<section id="pre-commit">
+<h3>Pre-commit<a class="headerlink" href="#pre-commit" title="Permalink to this heading">#</a></h3>
+<p>To centralize the formatting process, we use <a class="reference external" href="https://pre-commit.com/">pre-commit</a>. This tool allows us to run all
+the checks written in the <a class="reference external" href="https://github.com/unifyai/ivy/blob/master/.pre-commit-config.yaml">.pre-commit-config.yaml</a>
+file.</p>
+<p>Pre-commit can run alone or as a git hook. To install it, you can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>pre-commit
+</pre></div>
+</div>
+<p>Once you have installed pre-commit, you can install the git hook by running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>install
+</pre></div>
+</div>
+<p>This will install the git hook and will run the checks before you commit your code. If you want to run the checks
+manually, you can run the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pre-commit<span class="w"> </span>run<span class="w"> </span>--all-files
+</pre></div>
+</div>
+<p>This will run all the required checks and will show you the output of each check.</p>
+<p>Also when you make a commit, pre-commit will run the required checks and will show you the output of each check. If
+there are any errors, it will not allow you to commit your code. You can fix the errors and commit again.</p>
+<p>You should expect to see something similar to the following output when you run the checks:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[INFO] Stashing unstaged files to ~/.cache/pre-commit/patch1687898304-8072.
+black....................................................................Passed
+autoflake................................................................Passed
+flake8...................................................................Passed
+docformatter.............................................................Passed
+pydocstyle...............................................................Passed
+[INFO] Restored changes from ~/.cache/pre-commit/patch1687898304-8072.
+[formatting-docs 3516aed563] Test commit
+1 file changed, 1 insertion(+)
+</pre></div>
+</div>
+<p>If something goes wrong, you will see the following output:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>[INFO] Stashing unstaged files to ~/.cache/pre-commit/patch1687898304-8072.
+black....................................................................Failed
+- hook id: black
+- files were modified by this hook
+
+reformatted ivy/stateful/activations.py
+
+All done! ✨ 🍰 ✨
+1 file reformatted.
+
+autoflake................................................................Passed
+flake8...................................................................Passed
+docformatter.............................................................Passed
+pydocstyle...............................................................Passed
+[INFO] Restored changes from ~/.cache/pre-commit/patch1687898304-8072.
+</pre></div>
+</div>
+<p>You will notice that some files have changed if you checked <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">status</span></code>, you’ll need to add them and commit again.</p>
+</section>
+<section id="vs-code">
+<h3>VS Code<a class="headerlink" href="#vs-code" title="Permalink to this heading">#</a></h3>
+<p>There are some helpful extensions for VS Code that can detect and format your code according to our style guide. Here
+is the list of extensions that we recommend:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.black-formatter">Black Formatter</a></p></li>
+<li><p><a class="reference external" href="https://marketplace.visualstudio.com/items?itemName=ms-python.flake8">Flake8 Extension</a></p></li>
+</ul>
+</section>
+<section id="pycharm">
+<h3>PyCharm<a class="headerlink" href="#pycharm" title="Permalink to this heading">#</a></h3>
+<p>Unfortunately, PyCharm doesn’t have formatting extensions like VS Code. We don’t have specific instructions for PyCharm
+but you can use the following links to set up the formatting:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://akshay-jain.medium.com/pycharm-black-with-formatting-on-auto-save-4797972cf5de">Akshay Jain’s article on Pycharm + Black with Formatting on Auto-save</a></p></li>
+</ul>
+</section>
+</section>
+<section id="common-issues-with-pre-commit">
+<h2>Common Issues with Pre-Commit<a class="headerlink" href="#common-issues-with-pre-commit" title="Permalink to this heading">#</a></h2>
+<p>As pre-commit hook runs before each commit, when it fails it provides an error message that’s readable on terminals
+but not on IDE GUIs. So you might see a cryptic error message like one of the following:</p>
+<img alt="git commit error in VS Code" src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/deep_dive/formatting/vscode_error.png?raw=true" />
+<img alt="git commit error in PyCharm" src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/deep_dive/formatting/pycharm_error.png?raw=true" />
+<p>We recommend you commit your code from the terminal when you contribute to Ivy. But if you want to commit from your IDE,
+you can always either click on “Show Command Output” or “Show details in console” to see the error message.</p>
+<p>And be aware that some of the linters we use format your code automatically like <code class="docutils literal notranslate"><span class="pre">black</span></code> and <code class="docutils literal notranslate"><span class="pre">autoflake</span></code>. So you
+will need to add the changes to your commit and commit again.</p>
+</section>
+<section id="continuous-integration">
+<h2>Continuous Integration<a class="headerlink" href="#continuous-integration" title="Permalink to this heading">#</a></h2>
+<p>We have multiple GitHub actions to check and fix the formatting of the code. They can be divided into lint checks and
+lint formatting (or lint-bot).</p>
+<p>All the check we do are made by pre-commit, you don’t need to worry about lint errors arising from the CI checks that
+are not caught by pre-commit.</p>
+<section id="id2">
+<h3>Lint Checks<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p>We have a GitHub action that runs:</p>
+<ol class="arabic simple">
+<li><p>Every commit</p></li>
+<li><p>Every pull request</p></li>
+</ol>
+<p>The important check is the one that runs on every pull request. You should expect this check to pass if you have
+pre-commit correctly set up. Note that you can also reformat your code directly from GitHub making a comment with
+<code class="docutils literal notranslate"><span class="pre">ivy-gardener</span></code>, we will go through this in the next section.</p>
+</section>
+<section id="lint-formatting">
+<h3>Lint Formatting<a class="headerlink" href="#lint-formatting" title="Permalink to this heading">#</a></h3>
+<p>We have a GitHub action that runs:</p>
+<ol class="arabic simple">
+<li><p>Every day at 08:00 UTC</p></li>
+<li><p>Manually invoked by making a comment with <code class="docutils literal notranslate"><span class="pre">ivy-gardener</span></code> on a PR</p></li>
+</ol>
+<p>The first action is to ensure that the code is always formatted correctly. The second action is to allow you to
+reformat your code directly from GitHub. This is useful if you didn’t setup pre-commit correctly and you or one
+of our maintainers want to reformat your code without having to clone the repository.</p>
+<p><strong>Round Up</strong></p>
+<p>This should have hopefully given you a good feel for what is our coding style and how to format your code to contribute
+to Ivy.</p>
+<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028266706436624456">formatting channel</a> or in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028297504820838480">formatting forum</a>!</p>
+<p><strong>Video</strong></p>
+<iframe width="420" height="315" allow="fullscreen;"
+src="https://www.youtube.com/embed/JXQ8aI8vJ_8" class="video">
+</iframe></section>
+</section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-checks">Lint Checks</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#setup-formatting-locally">Setup Formatting Locally</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pre-commit">Pre-commit</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#vs-code">VS Code</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pycharm">PyCharm</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#common-issues-with-pre-commit">Common Issues with Pre-Commit</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#continuous-integration">Continuous Integration</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">Lint Checks</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#lint-formatting">Lint Formatting</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Ivy Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
