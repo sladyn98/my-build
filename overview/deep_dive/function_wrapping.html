@@ -1,0 +1,597 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>Function Wrapping &#8212; Ivy Documentation</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css" />
+    <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Inter:100,200,300,regular,500,600,700,800,900" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'overview/deep_dive/function_wrapping';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://unify.ai/docs/versions/ivy.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'dev';
+        </script>
+    <script src="../../_static/js/kapa.ai.js"></script>
+    <link rel="icon" href="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_only.png?raw=true"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search the docs ..."
+         aria-label="Search the docs ..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+<div class="bd-header__inner bd-page-width">
+  <label class="sidebar-toggle primary-toggle" for="__primary">
+    <span class="fa-solid fa-bars"></span>
+  </label>
+  
+  <div class="navbar-header-items__start">
+    
+      <div class="navbar-item">
+   
+
+<a class="navbar-brand logo" href="https://unify.ai">
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_new.svg?raw=true" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="https://github.com/unifyai/unifyai.github.io/blob/master/img/externally_linked/ivy_logo_new_dark.svg?raw=true" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+    
+  </div>
+  
+  
+  <div class="col-lg-9 navbar-header-items">
+    
+    <div class="me-auto navbar-header-items__center">
+      
+        <div class="navbar-item"><nav role="navigation" class="nav-menu">
+    <div class="menu-holder">
+        <div class="menu-link-holder">
+            <a href="https://github.com/unifyai/ivy" target="_blank" class="nav-link-header w-nav-link">Github</a>
+            <a href="https://unify.ai/docs/ivy/" target="_blank" class="nav-link-header w-nav-link">Docs</a>
+            <a href="https://discord.com/invite/sXyFF8tDtm" target="_blank" class="nav-link-header w-nav-link">Discord</a>
+        </div>
+    </div>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+        </div>
+      
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      dev  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+      
+        <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+    </div>
+  
+
+  
+    <label class="sidebar-toggle secondary-toggle" for="__secondary">
+      <span class="fa-solid fa-outdent"></span>
+    </label>
+  
+</div>
+
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          <div class="navbar-item"><nav role="navigation" class="nav-menu">
+    <div class="menu-holder">
+        <div class="menu-link-holder">
+            <a href="https://github.com/unifyai/ivy" target="_blank" class="nav-link-header w-nav-link">Github</a>
+            <a href="https://unify.ai/docs/ivy/" target="_blank" class="nav-link-header w-nav-link">Docs</a>
+            <a href="https://discord.com/invite/sXyFF8tDtm" target="_blank" class="nav-link-header w-nav-link">Discord</a>
+        </div>
+    </div>
+</nav></div>
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <div class="version-switcher__container dropdown">
+    <button type="button" class="version-switcher__button btn btn-sm navbar-btn dropdown-toggle" data-bs-toggle="dropdown">
+      dev  <!-- this text may get changed later by javascript -->
+      <span class="caret"></span>
+    </button>
+    <div class="version-switcher__menu dropdown-menu list-group-flush py-0">
+    <!-- dropdown will be populated by javascript on page load -->
+    </div>
+  </div>
+`);
+</script></div>
+        
+          <div class="navbar-item">
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item"><nav class="bd-docs-nav bd-links"
+  aria-label="Section Navigation">
+    <div class="bd-toc-item navbar-nav">
+        
+    </div>
+</nav></div>
+        <div class="sidebar-primary-item">
+
+<nav class="bd-docs-nav bd-links">
+    <div class="bd-toc-item navbar-nav">
+        <p aria-level="2" class="caption" role="heading">
+            <span class="caption-text">Docs</span>
+        </p>
+        <ul class="nav bd-sidenav">
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/ivy">
+                    Ivy
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/mech">
+                    Ivy mech
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/vision">
+                    Ivy vision
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/robot">
+                    Ivy robot
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/gym">
+                    Ivy gym
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/memory">
+                    Ivy memory
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/builder">
+                    Ivy builder
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/models">
+                    Ivy models
+                </a>
+            </li>
+            <li class="toctree-l1">
+                <a class="reference external" href="/docs/ecosystem">
+                    Ivy ecosystem
+                </a>
+            </li>
+            </ul>
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+
+
+<nav aria-label="Breadcrumbs">
+  <ul class="bd-breadcrumbs" role="navigation" aria-label="Breadcrumb">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../index.html" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page">Function Wrapping</li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section id="function-wrapping">
+<h1>Function Wrapping<a class="headerlink" href="#function-wrapping" title="Permalink to this heading">#</a></h1>
+<p>When a backend framework is set by calling <code class="code docutils literal notranslate"><span class="pre">ivy.set_backend(backend_name)</span></code>, then all Ivy functions are <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/utils/backend/handler.py#L259">wrapped</a>.
+This is achieved by calling <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L965">_wrap_function</a>, which will apply the appropriate wrapping to the given function, based on what decorators it has.
+For example, <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/ivy/elementwise.py#L28">abs</a> has the decorators <code class="code docutils literal notranslate"><span class="pre">&#64;to_native_arrays_and_back</span></code> and <code class="code docutils literal notranslate"><span class="pre">&#64;handle_out_argument</span></code>, and so the backend implementations will also be wrapped with the <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L595">to_native_arrays_and_back</a> and <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L800">handle_out_argument</a> wrappers.</p>
+<p>The new function returned by <code class="code docutils literal notranslate"><span class="pre">_wrap_function</span></code> is a replacement of the original function with extra code added to support requirements common to many functions in the API.
+This is the main purpose of the wrapping, to avoid code duplication which would exist if we added identical logic in every single function independently.</p>
+<p>Depending on the function being wrapped, the new function might handle <a class="reference internal" href="arrays.html#arrays"><span class="std std-ref">Arrays</span></a>, <a class="reference internal" href="inplace_updates.html#inplace-updates"><span class="std std-ref">Inplace Updates</span></a>, <a class="reference internal" href="data_types.html#data-types"><span class="std std-ref">Data Types</span></a> and/or <a class="reference internal" href="devices.html#devices"><span class="std std-ref">Devices</span></a>.</p>
+<p>Our test decorators actually transforms to <code class="code docutils literal notranslate"><span class="pre">&#64;given</span></code> decorators at Pytest collecting time, therefore this allows us to use other <strong>Hypothesis</strong> decorators like, <code class="code docutils literal notranslate"><span class="pre">&#64;reproduce_failure</span></code>, <code class="code docutils literal notranslate"><span class="pre">&#64;settings</span></code>, <code class="code docutils literal notranslate"><span class="pre">&#64;seed</span></code>.</p>
+<section id="decorator-order">
+<h2>Decorator order<a class="headerlink" href="#decorator-order" title="Permalink to this heading">#</a></h2>
+<p>The order in which Ivy decorators are applied is important. It is important to follow this order, as the functionality of many functions depends on it. If the decorators are applied in the wrong order, the test may fail or the function may not behave as expected.
+The following is the recommended order to follow :</p>
+<ol class="arabic simple">
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;infer_device</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_array_function</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;outputs_to_ivy_arrays</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;outputs_to_native_arrays</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;inputs_to_native_arrays</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;inputs_to_ivy_arrays</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_out_argument</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_view_indexing</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_view</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_array_like_without_promotion</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_nestable</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_exceptions</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;with_unsupported_dtypes</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_nans</span></code></p></li>
+<li><p><code class="code docutils literal notranslate"><span class="pre">&#64;handle_mixed_function</span></code></p></li>
+</ol>
+<p>This recommended order is followed to ensure that tests are efficient and accurate. It is important to follow this order because the decorators depend on each other. For example, the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_device</span></code> decorator needs to be applied before the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> decorator, because the <code class="code docutils literal notranslate"><span class="pre">&#64;infer_dtype</span></code> decorator needs to know the device of the function in order to infer the data type.</p>
+</section>
+<section id="conversion-wrappers">
+<h2>Conversion Wrappers<a class="headerlink" href="#conversion-wrappers" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L405">inputs_to_native_arrays</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances in the arguments to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> counterparts, based on the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a> before calling the function.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L445">inputs_to_ivy_arrays</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> instances in the arguments to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> counterparts, based on the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a> before calling the function.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L525">outputs_to_ivy_arrays</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> instances in the outputs to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> counterparts, based on the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a> before calling the function.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L595">to_native_arrays_and_back</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> instances in the arguments to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> counterparts, calls the function with those arguments and then converts the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeArray</span></code> instances in the output back to <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code>.
+This wrapping function is heavily used because it enables achieving the objective of ensuring that every ivy function could accept an <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> and return an <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code>, making it independent of the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a>.</p></li>
+</ol>
+</section>
+<section id="inference-wrappers">
+<h2>Inference Wrappers<a class="headerlink" href="#inference-wrappers" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L725">infer_dtype</a> : This wrapping function infers the <cite>dtype</cite> argument to be passed to a function based on the  array arguments passed to it.
+If <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> is explicitly passed to the function, then it is used directly.
+This wrapping function could be found in functions from the <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/ivy/creation.py">creation submodule</a> such as <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/ivy/creation.py#L482">zeros</a> where we then allow the user to not enter the <code class="code docutils literal notranslate"><span class="pre">dtype</span></code> argument to such functions.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L763">infer_device</a> : Similar to the <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L725">infer_dtype</a> wrapping function, the <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L763">infer_device</a> function wrapping  infers the <code class="code docutils literal notranslate"><span class="pre">device</span></code> argument to be passed to a function based on the first array argument passed to it.
+This wrapping function is also used a lot in functions from the <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/ivy/creation.py">creation submodule</a> such as <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/ivy/creation.py#L383">asarray</a>, where we want to create the <cite>ivy.Array</cite> on the same device as the input array.</p></li>
+</ol>
+</section>
+<section id="out-argument-support">
+<h2>Out Argument Support<a class="headerlink" href="#out-argument-support" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L800">handle_out_argument</a> : This wrapping function is used in nearly all ivy functions.
+It enables appropriate handling of the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument of functions.
+In cases where the backend framework natively supports the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument for a function, we prefer to use it as it’s a more efficient implementation of the <code class="code docutils literal notranslate"><span class="pre">out</span></code> argument for that particular backend framework.
+But in cases when it isn’t supported, we support it anyway with <a class="reference internal" href="inplace_updates.html#inplace-updates"><span class="std std-ref">Inplace Updates</span></a>.</p></li>
+</ol>
+</section>
+<section id="nestable-support">
+<h2>Nestable Support<a class="headerlink" href="#nestable-support" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L896">handle_nestable</a> : This wrapping function enables the use of <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> arguments in functions and directly calling them through the <code class="code docutils literal notranslate"><span class="pre">ivy</span></code> namespace, just like calling a function with <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Array</span></code> arguments instead.
+Whenever there’s a <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> argument, this wrapping function defers to the corresponding <a class="reference internal" href="containers.html#containers"><span class="std std-ref">Containers</span></a> static method to facilitate the same.
+As a result, the function can be called by passing an <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Container</span></code> to any or all of its arguments.</p></li>
+</ol>
+</section>
+<section id="partial-mixed-function-support">
+<h2>Partial Mixed Function Support<a class="headerlink" href="#partial-mixed-function-support" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L944">handle_partial_mixed_function</a>: This wrapping function enables switching between compositional and primary implementations of <a class="reference internal" href="function_types.html#mixed-functions"><span class="std std-ref">Mixed Functions</span></a> based on some condition on the arguments of the function.</p></li>
+<li><p>The condition is specified through a lambda function which when evaluates to <cite>True</cite> the primary implementation is run and otherwise the compositional implementation is executed.</p></li>
+<li><p>For backends that have a primary implementation of a mixed function, the reference to the compositional implementation is <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L1054">stored as an attribute</a> inside the backend function during backend setting. To make use of this decorator, one must</p></li>
+<li><p>add the <code class="code docutils literal notranslate"><span class="pre">partial_mixed_handler</span></code> attribute containing the lambda function to the backend implementation. Here’s an <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/functional/backends/torch/layers.py#L30">example</a> from the torch backend implementation of linear.</p></li>
+</ol>
+</section>
+<section id="shape-conversion">
+<h2>Shape Conversion<a class="headerlink" href="#shape-conversion" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L488">inputs_to_native_shapes</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Shape</span></code> instances in the arguments to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeShape</span></code> counterparts, based on the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a> before calling the function.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L501">outputs_to_ivy_shapes</a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeShape</span></code> instances in the outputs to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Shape</span></code> counterparts, based on the <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a> before calling the function.</p></li>
+<li><p><a href="#id1"><span class="problematic" id="id2">`to_native_shapes_and_back`_</span></a> : This wrapping function converts all <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Shape</span></code> instances in the arguments to their <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeShape</span></code> counterparts, calls the function with those arguments and then converts the <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.NativeShape</span></code> instances in the output back to <code class="xref py py-class docutils literal notranslate"><span class="pre">ivy.Shape</span></code>.</p></li>
+</ol>
+</section>
+<section id="view-handling">
+<h2>View Handling<a class="headerlink" href="#view-handling" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L627">handle_view</a> : This wrapping function performs view handling based on our <a class="reference internal" href="inplace_updates.html#views"><span class="std std-ref">Views</span></a> policy.</p></li>
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L659">handle_view_indexing</a> : This wrapping function is aimed at handling views for indexing.</p></li>
+</ol>
+</section>
+<section id="exception-handling">
+<h2>Exception Handling<a class="headerlink" href="#exception-handling" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/utils/exceptions.py#L189">handle_exceptions</a> : This wrapping function helps in catching native exceptions and unifying them into <cite>IvyException</cite> or the relevant subclasses. More information can be found in the <a class="reference internal" href="#exception-handling"><span class="std std-ref">Exception Handling</span></a> section.</p></li>
+</ol>
+</section>
+<section id="miscellaneous-wrappers">
+<h2>Miscellaneous Wrappers<a class="headerlink" href="#miscellaneous-wrappers" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
+<li><p><a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L299">handle_array_function</a> : This wrapping function enables <a class="reference internal" href="arrays.html#integrating-custom-classes-with-ivy"><span class="std std-ref">Integrating custom classes with Ivy</span></a></p></li>
+</ol>
+<p>When calling <a class="reference external" href="https://github.com/unifyai/ivy/blob/5658401b266352d3bf72c95e4af6ae9233115722/ivy/func_wrapper.py#L965">_wrap_function</a> during <a class="reference internal" href="backend_setting.html#backend-setting"><span class="std std-ref">Backend Setting</span></a>, firstly the attributes of the functions are checked to get all the wrapping functions for a particular functions.
+Then all the wrapping functions applicable to a function are used to wrap the function.</p>
+<p>Each of these topics and each associated piece of logic added by the various wrapper functions are covered in more detail in the next sections.
+For now, suffice it to say that they do quite a lot.</p>
+<p><strong>Round Up</strong></p>
+<p>This should have hopefully given you a good feel for how function wrapping is applied to functions in Ivy.</p>
+<p>If you have any questions, please feel free to reach out on <a class="reference external" href="https://discord.gg/sXyFF8tDtm">discord</a> in the <a class="reference external" href="https://discord.com/channels/799879767196958751/982737993028755496">function wrapping channel</a> or in the <a class="reference external" href="https://discord.com/channels/799879767196958751/1028297461611122809">function wrapping forum</a>!</p>
+<p><strong>Video</strong></p>
+<iframe width="420" height="315" allow="fullscreen;"
+src="https://www.youtube.com/embed/-RGXxrP849k" class="video">
+</iframe></section>
+</section>
+
+
+                </article>
+              
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> On this page
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#decorator-order">Decorator order</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conversion-wrappers">Conversion Wrappers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#inference-wrappers">Inference Wrappers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#out-argument-support">Out Argument Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#nestable-support">Nestable Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#partial-mixed-function-support">Partial Mixed Function Support</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#shape-conversion">Shape Conversion</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#view-handling">View Handling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exception-handling">Exception Handling</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#miscellaneous-wrappers">Miscellaneous Wrappers</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+  <p class="copyright">
+    
+      © Copyright 2020-2023, Ivy Team.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 6.2.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item"><p class="theme-version">
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.13.3.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
